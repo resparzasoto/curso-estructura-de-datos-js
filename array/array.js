@@ -22,6 +22,13 @@ class MyArray {
     return lastItem;
   }
 
+  shift() {
+    const firstItem = this.data[0];
+    this.shiftIndex(0);
+
+    return firstItem;
+  }
+
   delete(index) {
     const item = this.data[index];
     this.shiftIndex(index);
@@ -41,13 +48,17 @@ class MyArray {
 
 const myArray = new MyArray();
 
+myArray.push("Rubén");
 myArray.push("Jesús");
 myArray.push("José");
 myArray.push("Juan");
 console.log("🚀 ~ file: array.js ~ line 43 ~ myArray", myArray);
 
-myArray.delete(1);
+myArray.delete(2);
 console.log("🚀 ~ file: array.js ~ line 43 ~ myArray", myArray);
 
 myArray.pop();
+console.log("🚀 ~ file: array.js ~ line 43 ~ myArray", myArray);
+
+myArray.shift();
 console.log("🚀 ~ file: array.js ~ line 43 ~ myArray", myArray);
