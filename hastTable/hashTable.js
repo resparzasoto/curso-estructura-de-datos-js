@@ -28,20 +28,38 @@ class HashTable {
   }
 
   get(key) {
-    const address = this.hashMethod(key);
-    const bucket = this.data[address];
+    const bucket = this.getBucket(key);
 
     if (bucket) {
       for (let i = 0; i < bucket.length; i++) {
-        const item = bucket[i];
-
-        if (item[0] === key) {
-          return item[1];
+        if (bucket[i][0] === key) {
+          return bucket[i];
         }
       }
     }
 
     return undefined;
+  }
+
+  remove(key) {
+    const bucket = this.getBucket(key);
+
+    if (bucket) {
+      for (let i = 0; i < bucket.length; i++) {
+        if (bucket[i][0] === key) {
+          bucket.splice(i, 1);
+
+          break;
+        }
+      }
+    }
+
+    return this.data;
+  }
+
+  getBucket(key) {
+    const address = this.hashMethod(key);
+    return this.data[address];
   }
 }
 
@@ -58,3 +76,5 @@ console.log("myHashTable.get('Jesús') ->", myHashTable.get("Jesús"));
 console.log("myHashTable.get('Jesus') ->", myHashTable.get("Jesus"));
 console.log("myHashTable.get('José')  ->", myHashTable.get("José"));
 console.log("myHashTable.get('Juan')  ->", myHashTable.get("Juan"));
+
+console.log("myHashTable.remove('Jesús') ->", myHashTable.remove("Jesús"));
